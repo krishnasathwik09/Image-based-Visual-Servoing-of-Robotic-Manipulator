@@ -1,0 +1,55 @@
+planarbot :
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 30  
+    
+    # Velocity Controllers ------------------------------------
+  joint1_velocity_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: joint1
+    # pid: {p: 100.0, i: 0.01, d: 10.0}                         #pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint2_velocity_controller:
+    type: velocity_controllers/JointVelocityController
+    joint: joint2
+    # pid: {p: 100.0, i: 0.01, d: 10.0}
+  
+  # Position Controllers ------------------------------------
+  joint1_position_controller:
+    type: velocity_controllers/JointPositionController
+    joint: joint1
+    # pid: {p: 1.0, i: 0.00, d: 0.1}
+
+  joint2_position_controller:
+    type: velocity_controllers/JointPositionController
+    joint: joint2
+    # pid: {p: 1.0, i: 0.00, d: 0.1}
+    
+    # Jacobian Estimation Parameters ------------------------------------
+  estimation:
+    epsilon: 1.0e-5 # update threshold or convergence condition
+    gamma:  10.0e-1 # learning rate during initial estimation
+    gamma2: 10.0e-9 # learning rate during servoing
+    window: 50 # window size
+    amplitude: 0.5 # amplitude for initial sin velocities
+    rate: 10 # initialization loop rate
+    
+  control:
+    no_of_actuators: 2
+    no_of_features: 2
+    rate: 10 # control loop rate
+    thresh: 5 # visual servoing convergence threshold
+    goal_pos_x: 160       # This is for adaptive VS 150,136,200,200,200,100
+    goal_pos_y: 55     # This is for adaptive VS 200,118,120,220,60,60
+    # right(235,140) = left(160,55)(170,55) 170,70 right_down(210,140) Inside(170,120)
+    window: 50 # window size
+    # lam: -10.0e-4 # servoing gain
+    lambda_1: -0.1  #-0.001 ,-0.0001 
+    lambda_2: -0.1  #-0.001  
+    #0.7,-0.7               
+
+
+
+
+
+ 

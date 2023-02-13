@@ -1,0 +1,59 @@
+<launch>
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="paused" value="true"/>
+      <arg name="use_sim_time" value="true"/>
+      <arg name="gui" value="true"/>
+      <arg name="headless" value="false"/> 		<!-- Inert - see gazebo_ros_pkgs issue #491 -->
+      <arg name="recording" value="false"/>
+      <arg name="debug" value="false"/>
+    </include>
+
+    <!-- Spawn a robot into Gazebo -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find planar_robot_vs)/urdf/planarbot.xacro"/>
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-urdf -model planarbot -param robot_description
+      -J joint1 0.4
+      -J joint2 0.6
+      -unpause" />
+  
+   <!-- [-2.09, 1.04] [-1.39, 2.65], [0.52, 1.04] [-1.04, -1.04] [-0.52, -0.52] [-0.52, 0.52]-->
+
+    <!-- Launch controller for robot joints -->
+    <rosparam file="$(find planar_robot_vs)/config/config.yaml" command="load"/>
+        <!-- Marker  Node -->
+     <node name="ee_detection_node" pkg="planar_robot_vs" type="ee_detection.py" output = "screen"/>
+
+    <!-- load the controllers -->
+    <!-- <node name="controller_spawner_stopped" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/planarbot" args=
+      "stopped joint1_position_controller
+      joint2_position_controller"/> -->    
+
+
+    <!-- load & start the position controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/planarbot" args=
+      "joint_state_controller
+       joint1_velocity_controller
+       joint2_velocity_controller"/>
+
+    <!-- convert joint states to TF transforms -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" respawn="false" output="screen">
+    	<remap from="/joint_states" to="/planarbot/joint_states" />
+    </node> 
+
+    <!-- VS Controller Node -->
+     <node name="planar_vscontrol_node" pkg="planar_robot_vs" type="planar_vscontrol_node" output = "screen"/>
+
+     
+    <!-- Visualization Nodes -->
+    <!-- <node name="planarbot_record_node" pkg="planar_robot_vs" type="planarbot_record_node" output="screen" /> -->
+    <node name="planarbot_vis_node" pkg="planar_robot_vs" type="planarbot_trajectory_visual.py" output="screen" required = "true" />
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find planar_robot_vs)/launch/planarbt.rviz"/> -->
+    <!-- <node name="plotjuggler" pkg="plotjuggler" type="plotjuggler" output="screen" required = "true" /> -->
+    <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    	<remap from="image" to="/planarbot/vis" />
+    </node>
+
+    <!-- </node>  -->
+
+</launch> 
+
