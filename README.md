@@ -1,8 +1,11 @@
 # Image-based-Visual-Servoing-of-Robotic-Manipulator
 ![ezgif com-crop](https://user-images.githubusercontent.com/93411202/218357364-1d6df1db-f7ac-4b96-8ff1-27d1ec651178.gif)
-![Right](https://user-images.githubusercontent.com/93411202/218357744-66746286-c29d-43b4-99fb-abe6c1306db3.gif)
 
 
+![Left](https://user-images.githubusercontent.com/93411202/218358204-ab195c04-c035-4760-9ff1-603e3e6b7f0c.gif)
+
+
+![Right](https://user-images.githubusercontent.com/93411202/218358218-2c0ea29a-a5be-4567-811d-b00b7dc70fac.gif)
 
 
 This package simulates a IBVS(Image based Visual Servoing) - Eye to Hand configuration for 2 link Planar Manipulator.
