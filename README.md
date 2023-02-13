@@ -6,17 +6,18 @@
 
 This package simulates a IBVS(Image based Visual Servoing) - Eye to Hand configuration for 2 link Planar Manipulator.
 
-Gazebo Setup:
-![Setup](https://user-images.githubusercontent.com/93411202/218359163-888c8f50-0e26-4a34-9983-274b72bae842.png)
+**Gazebo Setup:** 
+
+![Setup](https://user-images.githubusercontent.com/93411202/218359163-888c8f50-0e26-4a34-9983-274b72bae842.png width="300" height="400")
 
 
 
 
-**Feature Detection Node.** 
+**Feature Detection Node:** 
 
 Implemented a ROS node to detect End effector Feature point using Color segmentation method in OPENCV.
 
-**Proportional IBVS Node.**
+**Proportional IBVS Node:**
 
 -> Eye to Hand Configuration
 
