@@ -7,8 +7,9 @@
 This package simulates a IBVS(Image based Visual Servoing) - Eye to Hand configuration for 2 link Planar Manipulator.
 
 Gazebo Setup:
+![Setup](https://user-images.githubusercontent.com/93411202/218359163-888c8f50-0e26-4a34-9983-274b72bae842.png)
 
-![image](https://user-images.githubusercontent.com/93411202/218358572-f0d5831e-5831-4c32-9d2d-93ab010f2b0d.png)
+
 
 
 **Feature Detection Node.** 
