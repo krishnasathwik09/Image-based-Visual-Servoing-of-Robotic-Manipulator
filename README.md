@@ -8,7 +8,7 @@ This package simulates a IBVS(Image based Visual Servoing) - Eye to Hand configu
 
 **Gazebo Setup:** 
 
-![Setup](https://user-images.githubusercontent.com/93411202/218359163-888c8f50-0e26-4a34-9983-274b72bae842.png width="300" height="400")
+![Setup](https://user-images.githubusercontent.com/93411202/218359163-888c8f50-0e26-4a34-9983-274b72bae842.png | width="300")
 
 
 
